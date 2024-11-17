@@ -31,7 +31,7 @@ Before proceeding, ensure you have the following:
 Open Arduino IDE 1.6.8 and open OSE_Marlin.ino file in the folder - that is the firmware for the 3D printer controller board.
 
 ### 2. Configure the firmware
-1. Navigate te the Marlin Folder
+1. Navigate te the D3D 1807 Marlin/OSE_Marlin Folder
 2. Open Configuration_TitanAero_1804.h and Configuration_TitanAero_lcd.1804.h files in your preferred code editor.
 3. Edit the following to your liking:
 
