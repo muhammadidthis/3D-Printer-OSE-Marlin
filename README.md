@@ -4,7 +4,7 @@ See https://wiki.opensourceecology.org/wiki/D3D
 
 Added Instructions:
 
-# OSE Marlin Firmware
+# OSE Marlin Firmware for 3D printer
 
 OSE Marlin is a customized version of the Marlin firmware, widely used for controlling 3D printers and other CNC machines. It is tailored for Open Source Ecology's 3D printers and is part of the open-source hardware initiative. This firmware supports flexible configurations, enabling users to adapt it to various machine setups.
 
