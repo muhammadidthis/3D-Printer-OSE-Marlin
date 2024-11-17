@@ -23,7 +23,7 @@ OSE Marlin is a customized version of the Marlin firmware, widely used for contr
 ### **1. Prerequisites**
 Before proceeding, ensure you have the following:
 - A compatible 3D printer or CNC machine.
-- Computer with **Arduino IDE** or **PlatformIO IDE** installed.
+- Computer with **Arduino IDE(version 1.6.8 and above)** or **PlatformIO IDE** installed.
 - USB cable for connecting the machine to your computer.
 
 ---
@@ -31,15 +31,13 @@ Before proceeding, ensure you have the following:
 ### **2. Download and Set Up Firmware**
 
 #### Step 1: Download the Firmware
-1. Clone or download the repository:
-   ```bash
-   git clone https://github.com/<your-fork>/OSE-Marlin.git
+1. Clone or download this repository:
 
 
 ### 2. Configure the firmware
 1. Navigate te the Marlin Folder
 2. Open Configuration.h and Configuration_adv.h files in your preferred code editor.
-3. Edit the following:
+3. Edit the following to your liking:
 
 Printer dimensions: Adjust X_MAX_POS, Y_MAX_POS, and Z_MAX_POS.
 
@@ -51,26 +49,23 @@ Stepper motors: Specify steps per millimeter for precise movements.
 
 ### Step 3: Compile and Upload
 1. Open the project in Arduino IDE or PlatformIO.
-2. Select your printer's board under Tools > Board (e.g., Arduino Mega 2560).
+2. Select your printer's board under Tools > Board. For this printer use E3D Titan Aero(preferred)
 3. Compile and upload the firmware to your machine.
-
-
-Original:
-
-Download the folder of Files in Arduino language for OSE's 3D printer - by clicking the green button labeled Clone or Download, then download the zip. 
 
 Open Arduino IDE 1.6.8 and open OSE_Marlin.ino file in the folder - that is the firmware for the 3D printer controller board.
 
-Versions:
+### Common problems:
+Stepper motors not moving: Check the ENDSTOP_INVERTING settings in Configuration.h.
+
+Thermal runaway: Ensure thermistors are properly connected and their types match the configuration
+
+
+### Versions:
 
 1. D3D v18.07 Marlin - 0.4 mm nozzle, Prusa i3 MK2 Extruder
 2. Marlin - This is the version for a 0.6 mm nozzle, E3D Titan Aero extruder.
 3. Former versions of OSE Marlin are found at ttps://wiki.opensourceecology.org/wiki/File:OSE_Marlin.zip
 
-
-NOTES:
-
-Note that D3D 1807 Marlin/OSE_Marlin does not have OSE_Marlin.ino file, whereas the other folder - OSE_Marlin - does have OSE_Marlin.ino. What gives?
 
 
 
