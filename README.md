@@ -4,25 +4,25 @@ See https://wiki.opensourceecology.org/wiki/D3D
 
 Added Instructions:
 
-# OSE Marlin Firmware for 3D printer
+# OSE Marlin Firmware for 3D Printer
 
 OSE Marlin is a customized version of the Marlin firmware, widely used for controlling 3D printers and other CNC machines. It is tailored for Open Source Ecology's 3D printers and is part of the open-source hardware initiative. This firmware supports flexible configurations, enabling users to adapt it to various machine setups.
 
 ---
 
 ## Features
-- **Customizable Configuration**: Easily adjust for different printer specifications (build volume, thermistors, stepper motors, etc.).
-- **CNC and Laser Support**: Includes features for CNC tools and laser engravers.
-- **Advanced Calibration Tools**: Supports auto bed leveling, Z-offset adjustments, and skew compensation.
-- **Community Driven**: Continually improved by a dedicated open-source community.
-
+- **Advanced Temperature Control**: PID control for stable hotend and heated bed temperatures.
+- **Flexible Configuration**: Supports various build volumes, thermistors, stepper motor setups, and extruders.
+- **Bed Leveling Options**: Manual, automatic, and mesh bed leveling for precision prints.
+- **Power-Loss Recovery**: Resume prints seamlessly after unexpected power outages.
+- **Filament Runout Detection**: Automatically pauses prints when filament runs out
 ---
 
 ## Getting Started
 
 ### **1. Prerequisites**
 Before proceeding, ensure you have the following:
-- A compatible 3D printer or CNC machine.
+- A compatible 3D printer(E3D Titan Aero extruder)
 - Computer with **Arduino IDE(version 1.6.8 and above)** or **PlatformIO IDE** installed.
 - USB cable for connecting the machine to your computer.
 
@@ -32,11 +32,11 @@ Before proceeding, ensure you have the following:
 
 #### Step 1: Download the Firmware
 1. Clone or download this repository:
-
+Open Arduino IDE 1.6.8 and open OSE_Marlin.ino file in the folder - that is the firmware for the 3D printer controller board.
 
 ### 2. Configure the firmware
 1. Navigate te the Marlin Folder
-2. Open Configuration.h and Configuration_adv.h files in your preferred code editor.
+2. Open Configuration_TitanAero_1804.h and Configuration_TitanAero_lcd.1804.h files in your preferred code editor.
 3. Edit the following to your liking:
 
 Printer dimensions: Adjust X_MAX_POS, Y_MAX_POS, and Z_MAX_POS.
@@ -49,12 +49,13 @@ Stepper motors: Specify steps per millimeter for precise movements.
 
 ### Step 3: Compile and Upload
 1. Open the project in Arduino IDE or PlatformIO.
-2. Select your printer's board under Tools > Board. For this printer use E3D Titan Aero(preferred)
+2. Select your printer's board under Tools > Board. For this project use E3D Titan Aero
 3. Compile and upload the firmware to your machine.
 
-Open Arduino IDE 1.6.8 and open OSE_Marlin.ino file in the folder - that is the firmware for the 3D printer controller board.
-
 ---
+
+### Common commands:
+[G-Code commands](commands.txt)
 
 ### Common problems:
 Stepper motors not moving: Check the ENDSTOP_INVERTING settings in Configuration.h.
