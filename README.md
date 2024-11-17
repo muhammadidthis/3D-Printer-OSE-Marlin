@@ -32,7 +32,7 @@ Open Arduino IDE 1.6.8 and open OSE_Marlin.ino file in the folder - that is the 
 
 ### 2. Configure the firmware
 1. Navigate te the D3D 1807 Marlin/OSE_Marlin Folder
-2. Open Configuration_TitanAero_1804.h and Configuration_TitanAero_lcd.1804.h files in your preferred code editor.
+2. Open the confiq file Configuration_TitanAero_1804.h and Configuration_TitanAero_lcd.1804.h files in your preferred code editor.
 3. Edit the following to your liking:
 
 Printer dimensions: Adjust X_MAX_POS, Y_MAX_POS, and Z_MAX_POS.
@@ -55,7 +55,7 @@ Here are some common [G-Code Commands](commands.txt).
 For further exploration and additional commands visit https://cdn.imagearchive.com/homemodelenginemachinist/data/attach/87/87243-Marlin-GCodes7.pdf
 
 ### Common problems:
-Stepper motors not moving: Check the ENDSTOP_INVERTING settings in Configuration.h.
+Stepper motors not moving: Check the ENDSTOP_INVERTING settings in Configuration file.
 
 Thermal runaway: Ensure thermistors are properly connected and their types match the configuration
 
