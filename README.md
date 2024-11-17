@@ -1,8 +1,4 @@
-# 3D-Printer
-
 See https://wiki.opensourceecology.org/wiki/D3D
-
-Added Instructions:
 
 # OSE Marlin Firmware for 3D Printer
 
@@ -55,7 +51,8 @@ Stepper motors: Specify steps per millimeter for precise movements.
 ---
 
 ### Common commands:
-[G-Code commands](commands.txt)
+Here are some common [G-Code Commands](commands.txt). 
+For further exploration and additional commands visit https://cdn.imagearchive.com/homemodelenginemachinist/data/attach/87/87243-Marlin-GCodes7.pdf
 
 ### Common problems:
 Stepper motors not moving: Check the ENDSTOP_INVERTING settings in Configuration.h.
@@ -81,7 +78,7 @@ git checkout -b feature/your-feature-name
 
 1. D3D v18.07 Marlin - 0.4 mm nozzle, Prusa i3 MK2 Extruder
 2. Marlin - This is the version for a 0.6 mm nozzle, E3D Titan Aero extruder.
-3. Former versions of OSE Marlin are found at ttps://wiki.opensourceecology.org/wiki/File:OSE_Marlin.zip
+3. Former versions of OSE Marlin are found at https://wiki.opensourceecology.org/wiki/File:OSE_Marlin.zip
 
 
 
