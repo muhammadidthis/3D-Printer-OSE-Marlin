@@ -1,0 +1,71 @@
+Here are more **common G-code commands** that are frequently used for controlling 3D printers:
+
+### Movement Commands:
+- **G1**: Linear movement (move to a specific coordinate)
+   - Example: `G1 X100 Y100 Z0.2 F1500` – Moves to coordinates (X100, Y100, Z0.2) at a feedrate of 1500mm/min.
+- **G0**: Rapid move (non-linear move, typically used for fast positioning)
+   - Example: `G0 X50 Y50` – Moves to coordinates (X50, Y50) without taking time for acceleration or deceleration.
+
+### Temperature Control:
+- **M104**: Set extruder temperature
+   - Example: `M104 S200` – Sets the hotend temperature to 200°C.
+- **M140**: Set bed temperature
+   - Example: `M140 S60` – Sets the heated bed temperature to 60°C.
+- **M109**: Set extruder temperature and wait until it’s reached
+   - Example: `M109 S200` – Sets the hotend to 200°C and waits for it to reach that temperature before continuing.
+- **M190**: Set bed temperature and wait
+   - Example: `M190 S60` – Sets the heated bed to 60°C and waits until it reaches the target temperature.
+
+### Fan Control:
+- **M106**: Turn on cooling fan
+   - Example: `M106 S255` – Turns the cooling fan on at full speed (S255 for max speed).
+- **M107**: Turn off cooling fan
+   - Example: `M107` – Turns the cooling fan off.
+
+### Extruder Control:
+- **M82**: Set extruder to absolute mode (use for normal printing)
+- **M83**: Set extruder to relative mode (used for retracting filament)
+- **G92**: Set the current position of the extruder to a specific value
+   - Example: `G92 E0` – Resets the extruder’s position to zero.
+- **G1 E10**: Extrude filament (move the extruder to push filament through)
+   - Example: `G1 E10 F200` – Extrudes 10mm of filament at a feedrate of 200mm/min.
+
+### Homing and Positioning:
+- **G28**: Home all axes
+   - Example: `G28` – Moves all axes to their home positions (typically using endstops).
+- **G29**: Start auto bed leveling (if supported by the firmware)
+   - Example: `G29` – Begins the auto bed leveling process.
+- **G92 E0**: Reset extruder position
+   - Example: `G92 E0` – Sets the extruder position to 0 to prepare for printing or retraction.
+
+### Print Control:
+- **M25**: Pause the print
+   - Example: `M25` – Pauses the current print job.
+- **M0**: Stop the printer
+   - Example: `M0` – Pauses the print and requires user input to continue or stop.
+- **M84**: Disable motors (can be used to turn off motors after print)
+   - Example: `M84` – Disables all stepper motors.
+
+### Custom Commands:
+- **M226**: Pause and wait for user input (used for filament change)
+   - Example: `M226` – Pauses the print until the user presses the button on the printer to continue.
+- **M301**: Set PID settings for hotend or heated bed
+   - Example: `M301 P22.2 I1.08 D114` – Sets the PID parameters for the hotend to new values.
+
+### Miscellaneous:
+- **M500**: Save settings to EEPROM
+   - Example: `M500` – Saves all current settings (e.g., calibration, PID values) to the printer’s EEPROM so they persist after reboot.
+- **M501**: Load settings from EEPROM
+   - Example: `M501` – Loads the saved settings from EEPROM.
+
+### Power Management:
+- **M112**: Emergency stop (shutdown printer immediately)
+   - Example: `M112` – Immediately stops all operations, used for emergencies.
+- **M413**: Enable or disable power-loss recovery
+   - Example: `M413` – Enables power-loss recovery, which resumes prints after power failure.
+
+---
+
+These G-code commands form the core control for a 3D printer and allow for full customization of the print process. Depending on your specific 3D printer setup, some commands may vary or additional commands might be supported for more specialized features.
+
+For further exploration and additional commands, you can refer to the **Marlin G-code documentation**: [Marlin G-code Wiki](https://marlinfw.org/docs/gcode/)
