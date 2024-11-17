@@ -69,8 +69,9 @@ We welcome contributions to improve OSE Marlin! Please:
 1. Fork this repository.
 2. Create a branch for your feature:
 
-***bash
+ ```bash
 git checkout -b feature/your-feature-name
+```
 
 3. Submit a pull request
 ---
