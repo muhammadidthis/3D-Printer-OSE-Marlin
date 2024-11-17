@@ -54,11 +54,26 @@ Stepper motors: Specify steps per millimeter for precise movements.
 
 Open Arduino IDE 1.6.8 and open OSE_Marlin.ino file in the folder - that is the firmware for the 3D printer controller board.
 
+---
+
 ### Common problems:
 Stepper motors not moving: Check the ENDSTOP_INVERTING settings in Configuration.h.
 
 Thermal runaway: Ensure thermistors are properly connected and their types match the configuration
 
+---
+### Contributing:
+
+We welcome contributions to improve OSE Marlin! Please:
+
+1. Fork this repository.
+2. Create a branch for your feature:
+
+***bash
+git checkout -b feature/your-feature-name
+
+3. Submit a pull request
+---
 
 ### Versions:
 
