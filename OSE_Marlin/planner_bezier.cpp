@@ -136,18 +136,33 @@ void cubic_b_spline(const float position[NUM_AXIS], const float target[NUM_AXIS]
     NOMORE(new_t, 1.0);
     float new_pos0 = eval_bezier(position[X_AXIS], first0, second0, target[X_AXIS], new_t);
     float new_pos1 = eval_bezier(position[Y_AXIS], first1, second1, target[Y_AXIS], new_t);
-    for (;;) {
-      if (new_t - t < (MIN_STEP)) break;
-      float candidate_t = 0.5 * (t + new_t);
-      float candidate_pos0 = eval_bezier(position[X_AXIS], first0, second0, target[X_AXIS], candidate_t);
-      float candidate_pos1 = eval_bezier(position[Y_AXIS], first1, second1, target[Y_AXIS], candidate_t);
-      float interp_pos0 = 0.5 * (bez_target[X_AXIS] + new_pos0);
-      float interp_pos1 = 0.5 * (bez_target[Y_AXIS] + new_pos1);
-      if (dist1(candidate_pos0, candidate_pos1, interp_pos0, interp_pos1) <= (SIGMA)) break;
-      new_t = candidate_t;
-      new_pos0 = candidate_pos0;
-      new_pos1 = candidate_pos1;
-      did_reduce = true;
+    static float optimize_step(float t, float step, const float* position, const float* control1, const float* control2, const float* target, float* bez_target) {
+    float new_t = t + step;
+    NOMORE(new_t, 1.0f);
+
+    float new_pos[2] = {
+    evaluate_bezier(position[X_AXIS], control1[X_AXIS], control2[X_AXIS], target[X_AXIS], new_t),
+    evaluate_bezier(position[Y_AXIS], control1[Y_AXIS], control2[Y_AXIS], target[Y_AXIS], new_t)
+    };
+
+    bool reduced = false;
+    while (new_t - t >= MIN_STEP) {
+    float mid_t = 0.5f * (t + new_t);
+    float mid_pos[2] = {
+    evaluate_bezier(position[X_AXIS], control1[X_AXIS], control2[X_AXIS], target[X_AXIS], mid_t),
+    evaluate_bezier(position[Y_AXIS], control1[Y_AXIS], control2[Y_AXIS], target[Y_AXIS], mid_t)
+    };
+    float interp_pos[2] = {
+    0.5f * (bez_target[X_AXIS] + new_pos[X_AXIS]),
+    0.5f * (bez_target[Y_AXIS] + new_pos[Y_AXIS])
+    };
+    if (calculate_distance(mid_pos[0], mid_pos[1], interp_pos[0], interp_pos[1]) <= SIGMA) break;
+    new_t = mid_t;
+    new_pos[X_AXIS] = mid_pos[X_AXIS];
+    new_pos[Y_AXIS] = mid_pos[Y_AXIS];
+    reduced = true;
+    }
+    return new_t;
     }
 
     // If we did not reduce the step, maybe we should enlarge it.
