@@ -40,9 +40,13 @@ Before proceeding, ensure you have the following:
 1. Navigate te the Marlin Folder
 2. Open Configuration.h and Configuration_adv.h files in your preferred code editor.
 3. Edit the following:
+
 Printer dimensions: Adjust X_MAX_POS, Y_MAX_POS, and Z_MAX_POS.
+
 Endstops: Configure endstop logic for accurate homing.
+
 Thermal settings: Set thermistor types for hotend and heated bed.
+
 Stepper motors: Specify steps per millimeter for precise movements.
 
 ### Step 3: Compile and Upload
