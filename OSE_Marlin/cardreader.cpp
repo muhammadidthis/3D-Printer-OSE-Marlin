@@ -346,41 +346,31 @@ void CardReader::openFile(char* name, bool read, bool push_current/*=false*/) {
   char *fname = name;
   char *dirname_start, *dirname_end;
 
-  if (name[0] == '/') {
-    dirname_start = &name[1];
-    while (dirname_start != NULL) {
-      dirname_end = strchr(dirname_start, '/');
-      //SERIAL_ECHOPGM("start:");SERIAL_ECHOLN((int)(dirname_start - name));
-      //SERIAL_ECHOPGM("end  :");SERIAL_ECHOLN((int)(dirname_end - name));
-      if (dirname_end != NULL && dirname_end > dirname_start) {
-        char subdirname[FILENAME_LENGTH];
-        strncpy(subdirname, dirname_start, dirname_end - dirname_start);
-        subdirname[dirname_end - dirname_start] = 0;
-        SERIAL_ECHOLN(subdirname);
-        if (!myDir.open(curDir, subdirname, O_READ)) {
-          SERIAL_PROTOCOLPGM(MSG_SD_OPEN_FILE_FAIL);
-          SERIAL_PROTOCOL(subdirname);
-          SERIAL_PROTOCOLCHAR('.');
-          return;
-        }
-        else {
-          //SERIAL_ECHOLNPGM("dive ok");
-        }
+ bool CardReader::navigateToPath(const char *path, SdFile &targetDir) {
+  SdFile tempDir = root;
+  const char *dirname_start = path + 1; // Skip leading '/'
 
-        curDir = &myDir;
-        dirname_start = dirname_end + 1;
-      }
-      else { // the remainder after all /fsa/fdsa/ is the filename
-        fname = dirname_start;
-        //SERIAL_ECHOLNPGM("remainder");
-        //SERIAL_ECHOLN(fname);
-        break;
-      }
+  while (dirname_start && *dirname_start) {
+    const char *dirname_end = strchr(dirname_start, '/');
+
+    char subdirname[FILENAME_LENGTH] = {0};
+    if (dirname_end) {
+      strncpy(subdirname, dirname_start, dirname_end - dirname_start);
+      dirname_start = dirname_end + 1;
     }
+    else {
+      strncpy(subdirname, dirname_start, FILENAME_LENGTH - 1);
+      dirname_start = nullptr;
+    }
+
+    if (!tempDir.open(&tempDir, subdirname, O_READ)) return false;
+
+    targetDir = tempDir;
   }
-  else { //relative path
-    curDir = &workDir;
-  }
+  return true;
+}
+
+  
 
   if (read) {
     if (file.open(curDir, fname, O_READ)) {

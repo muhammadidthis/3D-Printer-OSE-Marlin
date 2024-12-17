@@ -81,5 +81,47 @@ git checkout -b feature/your-feature-name
 3. Former versions of OSE Marlin are found at https://wiki.opensourceecology.org/wiki/File:OSE_Marlin.zip
 
 
+## Dependencies
+
+Explained:
+---
+
+### 1. U8g2 Library
+- **Purpose**: Interface with monochrome displays (OLED/LCD screens).
+- **Dependency**: [U8g2 Library](https://github.com/olikraus/u8g2).  
+- **Installation**: Available via Arduino IDE Library Manager.  
+  ```bash
+  Install: U8g2 by olikraus
+
+### 2. Marlin Firmware
+The following components are part of the **Marlin Firmware** ecosystem and provide the core functionalities for 3D printer control:
+
+- **`Marlin.h`**  
+  - **Purpose**: Main header file containing configurations and core logic.  
+  - **Dependency**: Marlin Firmware core.  
+
+- **`cardreader.h`**  
+  - **Purpose**: Handles SD card file management and operations.  
+  - **Dependency**: Part of Marlin Firmware SD card functionality.  
+
+- **`ultralcd.h`**  
+  - **Purpose**: Manages the LCD display interface for the printer.  
+  - **Dependency**: Part of Marlin Firmware display control.  
+
+- **`stepper.h`**  
+  - **Purpose**: Contains logic to control stepper motors for precise 3D printer movement.  
+  - **Dependency**: Core part of Marlin Firmware.  
+
+- **`language.h`**  
+  - **Purpose**: Provides multi-language support for interface texts.  
+  - **Dependency**: Part of Marlin Firmware's language system.  
+
+
+
+### 3. SD Card Support
+- **Purpose**: Enables the 3D printer to read files directly from an SD card.  
+- **Conditional Compilation**:  
+  - The `#if ENABLED(SDSUPPORT)` directive checks if SD card support is enabled.  
+  - **Dependency**: Configured in Marlin's `Configuration.h` and `Configuration_adv.h` files.  
 
 

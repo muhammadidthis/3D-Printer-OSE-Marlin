@@ -31,15 +31,23 @@
 
 #include "blinkm.h"
 
-void SendColors(byte red, byte grn, byte blu) {
-  Wire.begin();
-  Wire.beginTransmission(0x09);
-  Wire.write('o');                    //to disable ongoing script, only needs to be used once
+void BlinkMInit() {
+  Wire.begin();  // Initialize I2C communication once
+}
+
+void SendColors(byte red, byte grn, byte blu, byte address = 0x09) {
+  Wire.beginTransmission(address);
+  Wire.write('o'); 
   Wire.write('n');
   Wire.write(red);
   Wire.write(grn);
   Wire.write(blu);
-  Wire.endTransmission();
+
+  byte error = Wire.endTransmission();
+  if (error != 0) {
+    Serial.print("I2C Error: ");
+    Serial.println(error);  // Error handling for communication
+  }
 }
 
 #endif //BLINKM
