@@ -94,7 +94,7 @@ This project includes the following dependencies based on the code snippet:
   ```bash
   Install: U8g2 by olikraus
 
-## 2. Marlin Firmware
+### 2. Marlin Firmware
 The following components are part of the **Marlin Firmware** ecosystem and provide the core functionalities for 3D printer control:
 
 - **`Marlin.h`**  
@@ -117,9 +117,9 @@ The following components are part of the **Marlin Firmware** ecosystem and provi
   - **Purpose**: Provides multi-language support for interface texts.  
   - **Dependency**: Part of Marlin Firmware's language system.  
 
----
 
-## 3. SD Card Support
+
+### 3. SD Card Support
 - **Purpose**: Enables the 3D printer to read files directly from an SD card.  
 - **Conditional Compilation**:  
   - The `#if ENABLED(SDSUPPORT)` directive checks if SD card support is enabled.  
