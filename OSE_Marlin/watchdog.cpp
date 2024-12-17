@@ -33,11 +33,22 @@ void watchdog_init() {
     // Take care, as this requires the correct order of operation, with interrupts disabled. See the datasheet of any AVR chip for details.
     wdt_reset();
     _WD_CONTROL_REG = _BV(_WD_CHANGE_BIT) | _BV(WDE);
+    
+    // Set the watchdog timer for 4 seconds with interrupt enabled
     _WD_CONTROL_REG = _BV(WDIE) | WDTO_4S;
+    
+    // Sanity check for the watchdog configuration
+    if ((_WD_CONTROL_REG & _BV(WDIE)) == 0) {
+      SERIAL_ERROR_START;
+      SERIAL_ERRORLNPGM("Watchdog setup failed: Interrupt not enabled.");
+      return;
+    }
   #else
+    // Enable the watchdog timer for 4 seconds without interrupt
     wdt_enable(WDTO_4S);
   #endif
 }
+
 
 //===========================================================================
 //=================================== ISR ===================================

@@ -39,22 +39,29 @@
 #include "MarlinConfig.h"
 
 #if ENABLED(ULTRA_LCD)
+
+  // Include Wire.h once, regardless of the LCD type
+  #include <Wire.h>
+
   #if ENABLED(LCD_I2C_TYPE_PCF8575)
-    #include <Wire.h>
-    #include <LiquidCrystal_I2C.h>
+    #include <LiquidCrystal_I2C.h>  // For PCF8575 LCD type
+
   #elif ENABLED(LCD_I2C_TYPE_MCP23017) || ENABLED(LCD_I2C_TYPE_MCP23008)
-    #include <Wire.h>
-    #include <LiquidTWI2.h>
+    #include <LiquidTWI2.h>  // For MCP23017/MCP23008 LCD type
+
   #elif ENABLED(LCM1602)
-    #include <Wire.h>
-    #include <LCD.h>
-    #include <LiquidCrystal_I2C.h>
+    #include <LCD.h>  // For LCM1602 LCD
+    #include <LiquidCrystal_I2C.h>  // If using LiquidCrystal with I2C interface
+
   #elif ENABLED(DOGLCD)
-    #include <U8glib.h> // library for graphics LCD by Oli Kraus (https://github.com/olikraus/U8glib_Arduino)
+    #include <U8glib.h>  // For graphics LCDs (DOGLCD)
+
   #else
-    #include <LiquidCrystal.h> // library for character LCD
+    #include <LiquidCrystal.h>  // For standard character LCD
   #endif
+
 #endif
+
 
 #if HAS_DIGIPOTSS
   #include <SPI.h>
