@@ -64,72 +64,45 @@ volatile char Endstops::endstop_hit_bits; // use X_MIN, Y_MIN, Z_MIN and Z_MIN_P
  * Class and Instance Methods
  */
 
+void Endstops::init_endstop(uint8_t pin, bool pullup) {
+  SET_INPUT(pin);  // Set the pin as input
+  if (pullup) {
+    WRITE(pin, HIGH);  // Enable pull-up if specified
+  }
+}
+
+
 void Endstops::init() {
-
   #if HAS_X_MIN
-    SET_INPUT(X_MIN_PIN);
-    #if ENABLED(ENDSTOPPULLUP_XMIN)
-      WRITE(X_MIN_PIN,HIGH);
-    #endif
+    init_endstop(X_MIN_PIN, ENABLED(ENDSTOPPULLUP_XMIN));
   #endif
-
   #if HAS_Y_MIN
-    SET_INPUT(Y_MIN_PIN);
-    #if ENABLED(ENDSTOPPULLUP_YMIN)
-      WRITE(Y_MIN_PIN,HIGH);
-    #endif
+    init_endstop(Y_MIN_PIN, ENABLED(ENDSTOPPULLUP_YMIN));
   #endif
-
   #if HAS_Z_MIN
-    SET_INPUT(Z_MIN_PIN);
-    #if ENABLED(ENDSTOPPULLUP_ZMIN)
-      WRITE(Z_MIN_PIN,HIGH);
-    #endif
+    init_endstop(Z_MIN_PIN, ENABLED(ENDSTOPPULLUP_ZMIN));
   #endif
-
   #if HAS_Z2_MIN
-    SET_INPUT(Z2_MIN_PIN);
-    #if ENABLED(ENDSTOPPULLUP_ZMIN)
-      WRITE(Z2_MIN_PIN,HIGH);
-    #endif
+    init_endstop(Z2_MIN_PIN, ENABLED(ENDSTOPPULLUP_ZMIN));
   #endif
-
   #if HAS_X_MAX
-    SET_INPUT(X_MAX_PIN);
-    #if ENABLED(ENDSTOPPULLUP_XMAX)
-      WRITE(X_MAX_PIN,HIGH);
-    #endif
+    init_endstop(X_MAX_PIN, ENABLED(ENDSTOPPULLUP_XMAX));
   #endif
-
   #if HAS_Y_MAX
-    SET_INPUT(Y_MAX_PIN);
-    #if ENABLED(ENDSTOPPULLUP_YMAX)
-      WRITE(Y_MAX_PIN,HIGH);
-    #endif
+    init_endstop(Y_MAX_PIN, ENABLED(ENDSTOPPULLUP_YMAX));
   #endif
-
   #if HAS_Z_MAX
-    SET_INPUT(Z_MAX_PIN);
-    #if ENABLED(ENDSTOPPULLUP_ZMAX)
-      WRITE(Z_MAX_PIN,HIGH);
-    #endif
+    init_endstop(Z_MAX_PIN, ENABLED(ENDSTOPPULLUP_ZMAX));
   #endif
-
   #if HAS_Z2_MAX
-    SET_INPUT(Z2_MAX_PIN);
-    #if ENABLED(ENDSTOPPULLUP_ZMAX)
-      WRITE(Z2_MAX_PIN,HIGH);
-    #endif
+    init_endstop(Z2_MAX_PIN, ENABLED(ENDSTOPPULLUP_ZMAX));
   #endif
-
   #if ENABLED(Z_MIN_PROBE_ENDSTOP)
-    SET_INPUT(Z_MIN_PROBE_PIN);
-    #if ENABLED(ENDSTOPPULLUP_ZMIN_PROBE)
-      WRITE(Z_MIN_PROBE_PIN,HIGH);
-    #endif
+    init_endstop(Z_MIN_PROBE_PIN, ENABLED(ENDSTOPPULLUP_ZMIN_PROBE));
   #endif
+}
 
-} // Endstops::init
+
 
 void Endstops::report_state() {
   if (endstop_hit_bits) {
