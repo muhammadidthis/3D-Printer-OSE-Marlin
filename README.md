@@ -81,5 +81,17 @@ git checkout -b feature/your-feature-name
 3. Former versions of OSE Marlin are found at https://wiki.opensourceecology.org/wiki/File:OSE_Marlin.zip
 
 
+## Dependencies
+
+This project includes the following dependencies based on the code snippet:
+
+---
+
+### 1. U8g2 Library
+- **Purpose**: Interface with monochrome displays (OLED/LCD screens).
+- **Dependency**: [U8g2 Library](https://github.com/olikraus/u8g2).  
+- **Installation**: Available via Arduino IDE Library Manager.  
+  ```bash
+  Install: U8g2 by olikraus
 
 
