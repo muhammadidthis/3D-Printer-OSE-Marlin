@@ -83,8 +83,7 @@ git checkout -b feature/your-feature-name
 
 ## Dependencies
 
-This project includes the following dependencies based on the code snippet:
-
+Explained:
 ---
 
 ### 1. U8g2 Library
